@@ -1,0 +1,11 @@
+
+# create a new scope called VLAN1. And should have a range of 192.168.1.1 to 1.92.168.1.254
+<pre><code> Add-DhcpServerv4Scope -name "VLAN1" -StartRange 192.168.1.1 -EndRange 192.168.1.254 -SubnetMask 255.255.255.0 -State Active  
+</code></pre>
+
+
+Add-DhcpServerv4ExclusionRange -ScopeID 192.168.1.0 -StartRange 192.168.1.1 -EndRange 192.168.1.10
+Set-DhcpServerv4OptionValue -OptionID 3 -Value 192.168.1.1 -ScopeID 192.168.1.1 -ComputerName  DC01.IATEK.ca
+Set-DhcpServerv4OptionValue -DnsDomain IATEK.ca -DnsServer 192.168.1.200
+Add-DhcpServerInDC -DnsName DC01.IATEK.ca -IPAddress 192.168.1.200
+	
